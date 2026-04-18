@@ -1,4 +1,4 @@
-Laboratorium III - Pierwsze repozytorium JPA i proste zapytania - stan na 19.04.2026 16:15
+Laboratorium III - Pierwsze repozytorium JPA i proste zapytania - stan na 18.04.2026 09:00
 
 **Uwaga - Przed przystąpieniem do zadania należy mieć ukończone LAB01 oraz LAB02.**
 
@@ -181,6 +181,7 @@ System.out.println("Łącznie treningów: " + trainingRepository.countAllTrainin
 
 **Ocena 5:**
 - Nowe encje `WorkoutSession`, `Event`, `UserEvent` zdefiniowane razem z relacjami `@ManyToOne`.
+- `Lab03EntitiesTest` przechodzi lokalnie i na GitHub Actions.
 - Dodane **jedno `JpaRepository`** z co najmniej **dwoma zapytaniami `@Query`**:
   - **minimum 1 zapytanie w natywnym SQL** (`nativeQuery = true`) — zgodnie z sekcją 4,
   - oraz 1 zapytanie JPQL (zgodnie z sekcją 3).
