@@ -1,23 +1,19 @@
 package pl.wsb.fitnesstracker.statistics.api;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import pl.wsb.fitnesstracker.user.api.User;
 
 @Entity
 @Table(name = "statistics")
 @Getter
+@Setter // Dodane, aby serwis mógł aktualizować statystyki po treningu
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 public class Statistics {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Nullable
     private Long id;
 
     @OneToOne
@@ -31,12 +27,19 @@ public class Statistics {
     private double totalDistance;
 
     @Column(name = "total_calories_burned", nullable = false)
-    private int totalCaloriesBurned;
+    private long totalCaloriesBurned; // Zmieniono na long, jeśli przewidujemy duże liczby
 
-    public Statistics(User user, int totalTrainings, double totalDistance, int totalCaloriesBurned) {
+    public Statistics(User user) { // Uproszczony konstruktor - nowe statystyki startują od 0
+        this.user = user;
+        this.totalTrainings = 0;
+        this.totalDistance = 0.0;
+        this.totalCaloriesBurned = 0;
+    }
+
+    public Statistics(User user, int totalTrainings, double totalDistance, long totalCaloriesBurned) {
         this.user = user;
         this.totalTrainings = totalTrainings;
         this.totalDistance = totalDistance;
         this.totalCaloriesBurned = totalCaloriesBurned;
     }
-}
+}k
