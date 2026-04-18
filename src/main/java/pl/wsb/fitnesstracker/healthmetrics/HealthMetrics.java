@@ -10,6 +10,9 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "health_metrics")
+@Getter
+@Setter
+@NoArgsConstructor
 public class HealthMetrics {
 
     @Id
