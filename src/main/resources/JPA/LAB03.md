@@ -181,10 +181,9 @@ System.out.println("Łącznie treningów: " + trainingRepository.countAllTrainin
 
 **Ocena 5:**
 - Nowe encje `WorkoutSession`, `Event`, `UserEvent` zdefiniowane razem z relacjami `@ManyToOne`.
-- `Lab03EntitiesTest` przechodzi lokalnie i na GitHub Actions.
 - Dodane **jedno `JpaRepository`** z co najmniej **dwoma zapytaniami `@Query`**:
-    - **minimum 1 zapytanie w natywnym SQL** (`nativeQuery = true`) — zgodnie z sekcją 4,
-    - oraz 1 zapytanie JPQL (zgodnie z sekcją 3).
+  - **minimum 1 zapytanie w natywnym SQL** (`nativeQuery = true`) — zgodnie z sekcją 4,
+  - oraz 1 zapytanie JPQL (zgodnie z sekcją 3).
 - Zielony build na GitHub Actions po wypchnięciu zmian.
 
 **Ocena 4:**
