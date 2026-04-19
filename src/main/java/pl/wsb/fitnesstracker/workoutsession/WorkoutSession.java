@@ -15,9 +15,16 @@ import java.time.LocalDateTime;
 public class WorkoutSession {
 
     @Id
-    private int id;
-    private int trainingId;
-    private String timestamp;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "training_id", nullable = false)
+    private Training training;
+
+    @Column(name = "timestamp", nullable = false)
+    private LocalDateTime timestamp;
+
     private double startLatitude;
     private double startLongitude;
     private double endLatitude;
