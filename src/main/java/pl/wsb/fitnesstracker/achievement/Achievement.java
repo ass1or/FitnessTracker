@@ -8,7 +8,7 @@ import pl.wsb.fitnesstracker.user.api.User;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "achievements")
+@Table(name = "achievement")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,13 +18,20 @@ public class Achievement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(name = "earned_at", nullable = false)
+    @Column(name = "earned_at")
     private LocalDateTime earnedAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+
+    public Achievement(String name, LocalDateTime earnedAt, User user) {
+        this.name = name;
+        this.earnedAt = earnedAt;
+        this.user = user;
+    }
+
 }

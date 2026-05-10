@@ -16,18 +16,16 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * LAB03 — STAGE 1: encje.
+ * LAB03 — STAGE 1 & 2: encje.
  *
- * Ten plik sprawdza tylko istnienie i strukturę tabel dla nowych encji LAB03
- * (Event, UserEvent, WorkoutSession). NIE używa żadnego repozytorium — zieleni
- * się wyłącznie na podstawie poprawnych encji JPA.
- *
- * Class should be under src/test/java/pl/wsb/fitnesstracker.
+ * Ten plik sprawdza istnienie i strukturę tabel dla nowych encji LAB03
+ * (Event, UserEvent, WorkoutSession, Achievement).
  *
  * Wymagane nazwy tabel (np. przez @Table(name = "...")):
- *   - event
- *   - user_event (z kolumnami user_id, event_id)
- *   - workout_session (z kolumną training_id)
+ * - event
+ * - user_event (z kolumnami user_id, event_id)
+ * - workout_session (z kolumną training_id)
+ * - achievement (z kolumną user_id)
  */
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
@@ -80,6 +78,25 @@ class Lab03EntitiesTest {
             assertThat(cols).contains("id", "training_id");
         }
     }
+
+    // --- NOWE TESTY DLA LAB03-2 (Achievement) ---
+
+    @Test
+    void shouldHaveAchievementTable() throws Exception {
+        try (Connection conn = dataSource.getConnection()) {
+            assertThat(tableExists(conn, "achievement")).isTrue();
+        }
+    }
+
+    @Test
+    void achievementTableHasUserForeignKey() throws Exception {
+        try (Connection conn = dataSource.getConnection()) {
+            Set<String> cols = tableColumns(conn, "achievement");
+            assertThat(cols).contains("id", "user_id");
+        }
+    }
+
+    // --- METODY POMOCNICZE ---
 
     private boolean tableExists(Connection conn, String expectedName) throws SQLException {
         DatabaseMetaData meta = conn.getMetaData();
