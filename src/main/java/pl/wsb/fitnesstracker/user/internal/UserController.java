@@ -1,10 +1,8 @@
 package pl.wsb.fitnesstracker.user.internal;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pl.wsb.fitnesstracker.user.api.User;
 import pl.wsb.fitnesstracker.user.api.UserDto;
 import pl.wsb.fitnesstracker.user.api.UserProvider;
 import pl.wsb.fitnesstracker.user.api.UserService;
@@ -20,7 +18,9 @@ import java.util.List;
 @RequiredArgsConstructor
 class UserController {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
+
+    private final UserProvider userProvider;
 
     private final UserMapper userMapper;
 
