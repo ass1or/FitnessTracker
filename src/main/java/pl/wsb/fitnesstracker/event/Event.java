@@ -12,8 +12,22 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 public class Event {
-}
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    private String location;
 
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
+
+    public Event(String name, String location, LocalDate startDate) {
+        this.name = name;
+        this.location = location;
+        this.startDate = startDate;
+    }
 }

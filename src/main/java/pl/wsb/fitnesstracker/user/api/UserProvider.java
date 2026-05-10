@@ -26,8 +26,16 @@ public interface UserProvider {
     /**
      * Retrieves all users.
      *
-     * @return An {@link Optional} containing the all users,
+     * @return A list containing all users
      */
     List<User> findAllUsers();
+
+    /**
+     * Searches for users whose email contains the specified fragment (case-insensitive).
+     *
+     * @param email The email fragment to search for
+     * @return A list of matching users
+     */
+    List<User> searchUsersByEmail(String email);
 
 }

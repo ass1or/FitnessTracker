@@ -41,4 +41,37 @@ class UserServiceImpl implements UserService, UserProvider {
         return userRepository.findAll();
     }
 
+
+
+    /**
+     * Usuwa użytkownika z bazy danych.
+     */
+    public void deleteUser(Long userId) {
+        log.info("Deleting User with ID {}", userId);
+        userRepository.deleteById(userId);
+    }
+
+    /**
+     * Wyszukuje użytkowników po fragmencie adresu email (ignorując wielkość liter).
+     */
+    public List<User> searchUsersByEmail(String email) {
+        log.info("Searching for Users with email containing {}", email);
+        return userRepository.findByEmailContainingIgnoreCase(email);
+    }
+
+    /**
+     * Aktualizuje dane istniejącego użytkownika.
+     */
+    public User updateUser(Long userId, User userDetails) {
+        log.info("Updating User with ID {}", userId);
+        return userRepository.findById(userId)
+                .map(user -> {
+                    user.setFirstName(userDetails.getFirstName());
+                    user.setLastName(userDetails.getLastName());
+                    user.setEmail(userDetails.getEmail());
+                    user.setBirthdate(userDetails.getBirthdate());
+                    return userRepository.save(user);
+                })
+                .orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + userId));
+    }
 }
